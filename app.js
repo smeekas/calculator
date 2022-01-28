@@ -17,6 +17,8 @@ const clear = document.querySelector("#clear");
 
 const plusminus = document.querySelector("#plusminus");
 
+//TODO: exp and mod, trigonometry, function and memory
+
 //?OPERATORS
 const plus = document.querySelector("#plus");
 const minus = document.querySelector("#minus");
@@ -28,6 +30,11 @@ const equal = document.querySelector("#equal");
 const fe = document.querySelector("#fe");
 const input = document.querySelector("#input").children[0];
 
+
+
+//?first line
+const pi=document.querySelector("#pi");
+const natural=document.querySelector("#natural");
 //?second line
 const sqr = document.querySelector("#sqr");
 const inv = document.querySelector("#inv");
@@ -93,6 +100,14 @@ plusminus.addEventListener("click", () => {
   input.textContent = Number(input.textContent) * -1;
 });
 
+
+//?first line
+pi.addEventListener("click",()=>{
+  input.textContent=Math.PI;
+});
+natural.addEventListener("click",()=>{
+  input.textContent=Math.E;;
+})
 //?second line
 sqr.addEventListener("click", () => {
   const ip = Number(input.textContent);
@@ -108,7 +123,7 @@ man.addEventListener("click", () => {
     input.textContent = -ip;
   }
 });
-//TODO: exp and mod
+
 
 //?third line
 root.addEventListener("click", () => {
