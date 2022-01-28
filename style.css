@@ -18,10 +18,11 @@ html{
 #input{
     text-align: right;
     font-size: 36px;
-    
+  overflow-x: scroll;
 }
 #input div{
     height: 100%;
+    
 }
 #buttons{
     display: grid;

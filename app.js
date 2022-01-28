@@ -37,9 +37,23 @@ const mod = document.querySelector("#mod");
 
 //?third line
 const root = document.querySelector("#root");
-const leftpara = document.querySelector("#leftpara");
-const rightpara = document.querySelector("#rightpara");
+const lpara = document.querySelector("#lpara");
+const rpara = document.querySelector("#rpara");
 const fact = document.querySelector("#fact");
+
+
+//?forth line
+const xy=document.querySelector("#xy");
+
+//?fifith line
+const x10=document.querySelector("#x10");
+
+
+//?sixth line
+const log =document.querySelector("#log");
+
+//?seventh line
+const ln=document.querySelector("#ln");
 
 zero.addEventListener("click", inputNumber);
 one.addEventListener("click", inputNumber);
@@ -60,7 +74,12 @@ div.addEventListener("click", inputOperator);
 
 equal.addEventListener("click", () => {
   const ip = input.textContent;
-  input.textContent = eval(ip).toFixed(8);
+  const ans = eval(ip);
+  if (declen(ans)) {
+    input.textContent = ans.toFixed(5);
+    return;
+  }
+  input.textContent = ans.toString();
 });
 
 back.addEventListener("click", () => {
@@ -101,6 +120,53 @@ root.addEventListener("click", () => {
   }
   input.textContent = ans.toString();
 });
+
+lpara.addEventListener("click", () => {
+  input.textContent += "(";
+});
+rpara.addEventListener("click", () => {
+  input.textContent += ")";
+});
+
+fact.addEventListener("click", () => {
+  const ip = Number(input.textContent);
+  let ans=1;
+  for(let i=1;i<=ip;i++){
+ans*=i;
+  }
+  if(numLen(ans)>10){
+      input.textContent=toE(ans);
+      return;
+  }
+  input.textContent=ans;
+});
+
+
+//?forth line
+xy.addEventListener("click",()=>{
+    input.textContent+="**";
+})
+
+
+//?fifth line
+x10.addEventListener("click",()=>{
+    const ip=Number(input.textContent);
+    input.textContent=Math.pow(10,ip);
+})
+
+//?sixth line
+log.addEventListener("click",()=>{
+    const ip=Number(input.textContent);
+    input.textContent=Math.log10(ip)
+});
+
+
+//?seventh line
+ln.addEventListener("click",()=>{
+    const ip=Number(input.textContent);
+    input.textContent=Math.log(ip);
+});
+
 
 fe.addEventListener("click", () => {
   if (!input.textContent.includes("E")) {
@@ -231,3 +297,15 @@ const numLen = (num) => {
   }
   return len;
 };
+const toE=(ip)=>{
+    const num = eval(ip)
+    //  console.log(num.length);
+    const len = numLen(num);
+    let tens = 1,
+      temp = 0;
+    while (temp < len - 1) {
+      temp++;
+      tens = tens * 10;
+    }
+    return `${num / tens}E${temp}`;
+}
