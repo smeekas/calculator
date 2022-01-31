@@ -1,3 +1,10 @@
+const input = document.querySelector("#input").children[0];
+let degrad=true;
+let disabled=true;
+let disabledStyle=` color: gray;
+cursor: not-allowed;`
+let enabledStyle=`cursor:pointer;color:black;`;
+let memoryp,memoryn;
 //? NUMBERS +DECIMALS
 const zero = document.querySelector("#zero");
 const one = document.querySelector("#one");
@@ -17,7 +24,7 @@ const clear = document.querySelector("#clear");
 
 const plusminus = document.querySelector("#plusminus");
 
-//TODO: exp and mod, trigonometry, function and memory
+//TODO: exp and mod, trigonometry, function and memory, FE -ve
 
 //?OPERATORS
 const plus = document.querySelector("#plus");
@@ -26,15 +33,14 @@ const mul = document.querySelector("#mul");
 const div = document.querySelector("#div");
 const equal = document.querySelector("#equal");
 
-//?FE
+//?upper control
+const deg=document.querySelector("#deg")
 const fe = document.querySelector("#fe");
-const input = document.querySelector("#input").children[0];
-
 
 
 //?first line
-const pi=document.querySelector("#pi");
-const natural=document.querySelector("#natural");
+const pi = document.querySelector("#pi");
+const natural = document.querySelector("#natural");
 //?second line
 const sqr = document.querySelector("#sqr");
 const inv = document.querySelector("#inv");
@@ -48,20 +54,73 @@ const lpara = document.querySelector("#lpara");
 const rpara = document.querySelector("#rpara");
 const fact = document.querySelector("#fact");
 
-
 //?forth line
-const xy=document.querySelector("#xy");
+const xy = document.querySelector("#xy");
 
 //?fifith line
-const x10=document.querySelector("#x10");
-
+const x10 = document.querySelector("#x10");
 
 //?sixth line
-const log =document.querySelector("#log");
+const log = document.querySelector("#log");
 
 //?seventh line
-const ln=document.querySelector("#ln");
+const ln = document.querySelector("#ln");
 
+
+//?trigonometry
+const sin =document.querySelector("#sin");
+const cos =document.querySelector("#cos");
+const tan =document.querySelector("#tan");
+
+//?fuction
+const floor=document.querySelector("#floor")
+const ceil=document.querySelector("#ceil")
+
+//?memory
+const mr=document.querySelector("#mr");
+const mc=document.querySelector("#mc");
+const mp=document.querySelector("#mp");
+const mn=document.querySelector("#mn");
+const ms=document.querySelector("#ms");
+
+
+//?memory
+ms.addEventListener("click",()=>{
+  disabled=false;
+  mc.style=enabledStyle;
+  mr.style=enabledStyle;
+  console.log(memoryp,memoryn);
+  mc.addEventListener("click",mcel);
+})
+function mcel(){
+  disabled=true;
+  mc.style=disabledStyle;
+  mr.style=disabledStyle;
+  memoryp=0;memoryn=0;
+  mc.removeEventListener("click",mcel);
+}
+mp.addEventListener("click",()=>{
+ if(disabled){
+   ms.click();
+ }
+  memoryp=eval(input.textContent);
+  input.textContent="";
+  console.log(memoryp,memoryn);
+})
+mn.addEventListener("click",()=>{
+  if(disabled){
+    ms.click();
+  }
+  memoryn=eval(input.textContent);
+  input.textContent="";
+  console.log(memoryp,memoryn);
+})
+mr.addEventListener("click",()=>{
+  if(typeof(memoryp )===typeof(memoryn) && typeof(memoryp)==="number"){
+  input.textContent=memoryp-memoryn;
+  }
+  console.log(typeof(memoryp));
+})
 zero.addEventListener("click", inputNumber);
 one.addEventListener("click", inputNumber);
 two.addEventListener("click", inputNumber);
@@ -100,14 +159,17 @@ plusminus.addEventListener("click", () => {
   input.textContent = Number(input.textContent) * -1;
 });
 
-
 //?first line
-pi.addEventListener("click",()=>{
-  input.textContent=Math.PI;
+pi.addEventListener("click", () => {
+  if(input.textContent.length===0){
+  input.textContent = Math.PI;
+  }else{
+    input.textContent+=Math.PI.toFixed(3);
+  }
 });
-natural.addEventListener("click",()=>{
-  input.textContent=Math.E;;
-})
+natural.addEventListener("click", () => {
+  input.textContent = Math.E;
+});
 //?second line
 sqr.addEventListener("click", () => {
   const ip = Number(input.textContent);
@@ -123,7 +185,6 @@ man.addEventListener("click", () => {
     input.textContent = -ip;
   }
 });
-
 
 //?third line
 root.addEventListener("click", () => {
@@ -145,45 +206,85 @@ rpara.addEventListener("click", () => {
 
 fact.addEventListener("click", () => {
   const ip = Number(input.textContent);
-  let ans=1;
-  for(let i=1;i<=ip;i++){
-ans*=i;
+  let ans = 1;
+  for (let i = 1; i <= ip; i++) {
+    ans *= i;
   }
-  if(numLen(ans)>10){
-      input.textContent=toE(ans);
-      return;
+  if (numLen(ans) > 10) {
+    input.textContent = toE(ans);
+    return;
   }
-  input.textContent=ans;
+  input.textContent = ans;
 });
-
 
 //?forth line
-xy.addEventListener("click",()=>{
-    input.textContent+="**";
-})
-
+xy.addEventListener("click", () => {
+  input.textContent += "**";
+});
 
 //?fifth line
-x10.addEventListener("click",()=>{
-    const ip=Number(input.textContent);
-    input.textContent=Math.pow(10,ip);
-})
+x10.addEventListener("click", () => {
+  const ip = Number(input.textContent);
+  input.textContent = Math.pow(10, ip);
+});
 
 //?sixth line
-log.addEventListener("click",()=>{
-    const ip=Number(input.textContent);
-    input.textContent=Math.log10(ip)
+log.addEventListener("click", () => {
+  const ip = Number(input.textContent);
+  input.textContent = Math.log10(ip);
 });
-
 
 //?seventh line
-ln.addEventListener("click",()=>{
-    const ip=Number(input.textContent);
-    input.textContent=Math.log(ip);
+ln.addEventListener("click", () => {
+  const ip = Number(input.textContent);
+  input.textContent = Math.log(ip);
 });
 
 
+//?trigonometry
+sin.addEventListener("click",()=>{
+  const ip=eval(input.textContent);
+input.textContent=Math.sin(ip);
+})
+
+cos.addEventListener("click",()=>{
+  const ip=eval(input.textContent);
+input.textContent=Math.cos(ip);
+})
+
+tan.addEventListener("click",()=>{
+  const ip=eval(input.textContent);
+input.textContent=Math.tan(ip);
+})
+
+
+//?fuction
+floor.addEventListener("click",()=>{
+  const ip=eval(input.textContent);
+  input.textContent=Math.floor(ip)
+})
+ceil.addEventListener("click",()=>{
+  const ip=eval(input.textContent);
+  input.textContent=Math.ceil(ip)
+})
+//?upper control
+deg.addEventListener("click",()=>{
+if(degrad){
+//deg to rad
+deg.textContent="RAD";
+  input.textContent=eval(input.textContent)*Math.PI/180;
+degrad=!degrad;
+}else{
+//rad to deg
+deg.textContent="DEG"
+input.textContent=eval(input.textContent)/Math.PI*180;
+degrad=!degrad;
+}
+})
 fe.addEventListener("click", () => {
+  if (input.textContent.length === 0) {
+    return;
+  }
   if (!input.textContent.includes("E")) {
     const num = eval(input.textContent);
     //  console.log(num.length);
@@ -200,15 +301,16 @@ fe.addEventListener("click", () => {
   }
   if (input.textContent.includes("E")) {
     const arr = input.textContent.split("E");
-    console.log(arr);
-    let pow = 1;
-    while (arr[1] != 0) {
-      pow *= 10;
-      arr[1]--;
-    }
+    // if (parseInt(arr[0]) !== 0) {
+      let pow = 1;
+      while (arr[1] != 0) {
+        pow *= 10;
+        arr[1]--;
+      }
+      input.textContent = Number(arr[0]) * pow;
+      return;
+    // }
 
-    // console.log();
-    input.textContent = Number(arr[0]) * pow;
   }
 });
 
@@ -312,15 +414,15 @@ const numLen = (num) => {
   }
   return len;
 };
-const toE=(ip)=>{
-    const num = eval(ip)
-    //  console.log(num.length);
-    const len = numLen(num);
-    let tens = 1,
-      temp = 0;
-    while (temp < len - 1) {
-      temp++;
-      tens = tens * 10;
-    }
-    return `${num / tens}E${temp}`;
-}
+const toE = (ip) => {
+  const num = eval(ip);
+  //  console.log(num.length);
+  const len = numLen(num);
+  let tens = 1,
+    temp = 0;
+  while (temp < len - 1) {
+    temp++;
+    tens = tens * 10;
+  }
+  return `${num / tens}E${temp}`;
+};
