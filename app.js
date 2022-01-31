@@ -1,10 +1,10 @@
 const input = document.querySelector("#input").children[0];
-let degrad=true;
-let disabled=true;
-let disabledStyle=` color: gray;
-cursor: not-allowed;`
-let enabledStyle=`cursor:pointer;color:black;`;
-let memoryp,memoryn;
+let degrad = true;
+let disabled = true;
+let disabledStyle = ` color: gray;
+cursor: not-allowed;`;
+let enabledStyle = `cursor:pointer;color:black;`;
+let memoryp, memoryn;
 //? NUMBERS +DECIMALS
 const zero = document.querySelector("#zero");
 const one = document.querySelector("#one");
@@ -34,9 +34,8 @@ const div = document.querySelector("#div");
 const equal = document.querySelector("#equal");
 
 //?upper control
-const deg=document.querySelector("#deg")
+const deg = document.querySelector("#deg");
 const fe = document.querySelector("#fe");
-
 
 //?first line
 const pi = document.querySelector("#pi");
@@ -66,61 +65,60 @@ const log = document.querySelector("#log");
 //?seventh line
 const ln = document.querySelector("#ln");
 
-
 //?trigonometry
-const sin =document.querySelector("#sin");
-const cos =document.querySelector("#cos");
-const tan =document.querySelector("#tan");
+const sin = document.querySelector("#sin");
+const cos = document.querySelector("#cos");
+const tan = document.querySelector("#tan");
 
 //?fuction
-const floor=document.querySelector("#floor")
-const ceil=document.querySelector("#ceil")
+const floor = document.querySelector("#floor");
+const ceil = document.querySelector("#ceil");
 
 //?memory
-const mr=document.querySelector("#mr");
-const mc=document.querySelector("#mc");
-const mp=document.querySelector("#mp");
-const mn=document.querySelector("#mn");
-const ms=document.querySelector("#ms");
-
+const mr = document.querySelector("#mr");
+const mc = document.querySelector("#mc");
+const mp = document.querySelector("#mp");
+const mn = document.querySelector("#mn");
+const ms = document.querySelector("#ms");
 
 //?memory
-ms.addEventListener("click",()=>{
-  disabled=false;
-  mc.style=enabledStyle;
-  mr.style=enabledStyle;
-  console.log(memoryp,memoryn);
-  mc.addEventListener("click",mcel);
-})
-function mcel(){
-  disabled=true;
-  mc.style=disabledStyle;
-  mr.style=disabledStyle;
-  memoryp=0;memoryn=0;
-  mc.removeEventListener("click",mcel);
+ms.addEventListener("click", () => {
+  disabled = false;
+  mc.style = enabledStyle;
+  mr.style = enabledStyle;
+  console.log(memoryp, memoryn);
+  mc.addEventListener("click", mcel);
+});
+function mcel() {
+  disabled = true;
+  mc.style = disabledStyle;
+  mr.style = disabledStyle;
+  memoryp = 0;
+  memoryn = 0;
+  mc.removeEventListener("click", mcel);
 }
-mp.addEventListener("click",()=>{
- if(disabled){
-   ms.click();
- }
-  memoryp=eval(input.textContent);
-  input.textContent="";
-  console.log(memoryp,memoryn);
-})
-mn.addEventListener("click",()=>{
-  if(disabled){
+mp.addEventListener("click", () => {
+  if (disabled) {
     ms.click();
   }
-  memoryn=eval(input.textContent);
-  input.textContent="";
-  console.log(memoryp,memoryn);
-})
-mr.addEventListener("click",()=>{
-  if(typeof(memoryp )===typeof(memoryn) && typeof(memoryp)==="number"){
-  input.textContent=memoryp-memoryn;
+  memoryp = eval(input.textContent);
+  input.textContent = "";
+  console.log(memoryp, memoryn);
+});
+mn.addEventListener("click", () => {
+  if (disabled) {
+    ms.click();
   }
-  console.log(typeof(memoryp));
-})
+  memoryn = eval(input.textContent);
+  input.textContent = "";
+  console.log(memoryp, memoryn);
+});
+mr.addEventListener("click", () => {
+  if (typeof memoryp === typeof memoryn && typeof memoryp === "number") {
+    input.textContent = memoryp - memoryn;
+  }
+  console.log(typeof memoryp);
+});
 zero.addEventListener("click", inputNumber);
 one.addEventListener("click", inputNumber);
 two.addEventListener("click", inputNumber);
@@ -156,15 +154,21 @@ clear.addEventListener("click", () => {
 });
 
 plusminus.addEventListener("click", () => {
+  if(input.textContent.includes("e")){
+    const arr=input.textContent.split("e");
+    arr[1]*=-1;
+    input.textContent=`${arr[0]}e${arr[1]}`
+    return;
+  }
   input.textContent = Number(input.textContent) * -1;
 });
 
 //?first line
 pi.addEventListener("click", () => {
-  if(input.textContent.length===0){
-  input.textContent = Math.PI;
-  }else{
-    input.textContent+=Math.PI.toFixed(3);
+  if (input.textContent.length === 0) {
+    input.textContent = Math.PI;
+  } else {
+    input.textContent += Math.PI.toFixed(3);
   }
 });
 natural.addEventListener("click", () => {
@@ -185,7 +189,12 @@ man.addEventListener("click", () => {
     input.textContent = -ip;
   }
 });
-
+mod.addEventListener("click", () => {
+  input.textContent += "%";
+});
+exp.addEventListener("click", () => {
+  input.textContent+="e+";
+});
 //?third line
 root.addEventListener("click", () => {
   const ip = Number(input.textContent);
@@ -240,77 +249,57 @@ ln.addEventListener("click", () => {
   input.textContent = Math.log(ip);
 });
 
-
 //?trigonometry
-sin.addEventListener("click",()=>{
-  const ip=eval(input.textContent);
-input.textContent=Math.sin(ip);
-})
+sin.addEventListener("click", () => {
+  const ip = eval(input.textContent);
+  input.textContent = Math.sin(ip);
+});
 
-cos.addEventListener("click",()=>{
-  const ip=eval(input.textContent);
-input.textContent=Math.cos(ip);
-})
+cos.addEventListener("click", () => {
+  const ip = eval(input.textContent);
+  input.textContent = Math.cos(ip);
+});
 
-tan.addEventListener("click",()=>{
-  const ip=eval(input.textContent);
-input.textContent=Math.tan(ip);
-})
-
+tan.addEventListener("click", () => {
+  const ip = eval(input.textContent);
+  input.textContent = Math.tan(ip);
+});
 
 //?fuction
-floor.addEventListener("click",()=>{
-  const ip=eval(input.textContent);
-  input.textContent=Math.floor(ip)
-})
-ceil.addEventListener("click",()=>{
-  const ip=eval(input.textContent);
-  input.textContent=Math.ceil(ip)
-})
+floor.addEventListener("click", () => {
+  const ip = eval(input.textContent);
+  input.textContent = Math.floor(ip);
+});
+ceil.addEventListener("click", () => {
+  const ip = eval(input.textContent);
+  input.textContent = Math.ceil(ip);
+});
 //?upper control
-deg.addEventListener("click",()=>{
-if(degrad){
-//deg to rad
-deg.textContent="RAD";
-  input.textContent=eval(input.textContent)*Math.PI/180;
-degrad=!degrad;
-}else{
-//rad to deg
-deg.textContent="DEG"
-input.textContent=eval(input.textContent)/Math.PI*180;
-degrad=!degrad;
-}
-})
+deg.addEventListener("click", () => {
+  if (degrad) {
+    //deg to rad
+    deg.textContent = "RAD";
+    input.textContent = (eval(input.textContent) * Math.PI) / 180;
+    degrad = !degrad;
+  } else {
+    //rad to deg
+    deg.textContent = "DEG";
+    input.textContent = (eval(input.textContent) / Math.PI) * 180;
+    degrad = !degrad;
+  }
+});
 fe.addEventListener("click", () => {
   if (input.textContent.length === 0) {
     return;
   }
-  if (!input.textContent.includes("E")) {
-    const num = eval(input.textContent);
-    //  console.log(num.length);
-    const len = numLen(num);
-    let tens = 1,
-      temp = 0;
-    while (temp < len - 1) {
-      temp++;
-      tens = tens * 10;
-    }
-    input.textContent = `${num / tens}E${temp}`;
+  const num = eval(input.textContent);
+  if (!input.textContent.includes("e")) {
+    input.textContent = num.toExponential();
 
     return;
   }
-  if (input.textContent.includes("E")) {
-    const arr = input.textContent.split("E");
-    // if (parseInt(arr[0]) !== 0) {
-      let pow = 1;
-      while (arr[1] != 0) {
-        pow *= 10;
-        arr[1]--;
-      }
-      input.textContent = Number(arr[0]) * pow;
-      return;
-    // }
-
+  if (input.textContent.includes("e")) {
+    input.textContent = num.toString();
   }
 });
 
