@@ -10,7 +10,7 @@ let memoryPositiveValue = 0,
 
 
   function numberFormat(input) {
-    return input.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return input.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 function getInputValue() {
   let  currentValue = input.innerText.replace(/,/g, "");;
@@ -469,7 +469,7 @@ ceil.addEventListener("click", () => {
  */
 truncate.addEventListener("click", () => {
   const inputValue = eval(getInputValue());
-  input.textContent = umberFormat(Math.floor(inputValue));
+  input.textContent = numberFormat(Math.floor(inputValue));
 });
 /**
  * @event manInFunction
