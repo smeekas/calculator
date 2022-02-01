@@ -8,6 +8,14 @@ const enabledStyle = `cursor:pointer;color:black;`;
 let memoryPositiveValue = 0,
   memoryNegativeValue = 0;
 
+
+  function numberFormat(input) {
+    return input.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+function getInputValue() {
+  let  currentValue = input.innerText.replace(/,/g, "");;
+  return currentValue;
+}
 //---------------------------QUERY SELECTORS-------------------------//
 
 //   QUERYSELECTOR ON NUMBER AND DECIMAL
@@ -110,7 +118,7 @@ memoryPositive.addEventListener("click", () => {
   if (disabledMemory) {
     memoryStart.click();
   }
-  memoryPositiveValue = eval(input.textContent);
+  memoryPositiveValue = eval(getInputValue());
   input.textContent = "";
 });
 
@@ -122,7 +130,7 @@ memoryNegative.addEventListener("click", () => {
   if (disabledMemory) {
     memoryStart.click();
   }
-  memoryNegativeValue = eval(input.textContent);
+  memoryNegativeValue = eval(getInputValue());
   input.textContent = "";
 });
 
@@ -132,7 +140,7 @@ memoryNegative.addEventListener("click", () => {
  */
 memoryRecall.addEventListener("click", () => {
   // if (typeof memoryPositiveValue === typeof memoryNegativeValue && typeof memoryPositiveValue === "number") {
-  input.textContent = memoryPositiveValue - memoryNegativeValue;
+  input.textContent = numberFormat( memoryPositiveValue - memoryNegativeValue);
   // }
 });
 
@@ -160,15 +168,15 @@ operatorDiv.addEventListener("click", inputOperator);
  * @description evaluate expression and display the result
  */
 equal.addEventListener("click", () => {
-  const inputValue = input.textContent;
+  const inputValue = getInputValue();
   const answer = eval(inputValue);
 
   //if answer has more decimal digits then limit it to 5.
   if (declen(answer)) {
-    input.textContent = answer.toFixed(5);
+    input.textContent = numberFormat( answer.toFixed(5));
     return;
   }
-  input.textContent = answer.toString();
+  input.textContent =numberFormat( answer.toString());
 });
 
 //  event listener on back and clear button
@@ -177,7 +185,7 @@ equal.addEventListener("click", () => {
  * @description clear one letter from back
  */
 backspace.addEventListener("click", () => {
-  input.textContent = input.textContent.slice(0, input.textContent.length - 1);
+  input.textContent = numberFormat( input.textContent.slice(0, input.textContent.length - 1));
 });
 /**
  * @event clearInput
@@ -200,7 +208,7 @@ plusMinus.addEventListener("click", () => {
     input.textContent = `${arr[0]}e${arr[1]}`;
     return;
   }
-  input.textContent = Number(input.textContent) * -1;
+  input.textContent = Number(getInputValue())*-1;
 });
 
 //  first line
@@ -234,8 +242,8 @@ natural.addEventListener("click", () => {
  * @description squares the input number
  */
 square.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
-  input.textContent = inputValue * inputValue;
+  const inputValue = Number(getInputValue());
+  input.textContent =numberFormat( inputValue * inputValue);
 });
 
 /**
@@ -243,8 +251,8 @@ square.addEventListener("click", () => {
  * @description inerses the input number
  */
 inverse.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
-  input.textContent = (1 / inputValue).toFixed(8);
+  const inputValue = Number(getInputValue());
+  input.textContent = numberFormat((1 / inputValue).toFixed(8));
 });
 
 /**
@@ -253,7 +261,7 @@ inverse.addEventListener("click", () => {
  */
 
 mod.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
+  const inputValue = Number(getInputValue());
   if (inputValue < 0) {
     input.textContent = -inputValue;
   }
@@ -285,16 +293,16 @@ exponential.addEventListener("click", () => {
  * @description find the square root of given number
  */
 squareRoot.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
+  const inputValue = Number(getInputValue());
   if (inputValue < 0) {
     return;
   }
   const answer = Math.sqrt(inputValue);
   if (declen(answer)) {
-    input.textContent = answer.toFixed(5);
+    input.textContent =numberFormat( answer.toFixed(5));
     return;
   }
-  input.textContent = answer.toString();
+  input.textContent =numberFormat( answer.toString());
 });
 
 // lpara: left paranthesis
@@ -320,7 +328,7 @@ rightParanthesis.addEventListener("click", () => {
  * @description find factorial of given number
  */
 factorial.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
+  const inputValue = Number(getInputValue());
   let answer = 1;
   for (let i = 1; i <= inputValue; i++) {
     answer *= i;
@@ -331,7 +339,7 @@ factorial.addEventListener("click", () => {
     input.textContent = toExponential(answer);
     return;
   }
-  input.textContent = answer;
+  input.textContent = numberFormat( answer);
 });
 
 //  forth line
@@ -351,8 +359,8 @@ xToPowerY.addEventListener("click", () => {
  * @description find 10^x
  */
 tenToPowerX.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
-  input.textContent = Math.pow(10, inputValue);
+  const inputValue = Number(getInputValue());
+  input.textContent = numberFormat( Math.pow(10, inputValue));
 });
 
 //  sixth line
@@ -362,8 +370,8 @@ tenToPowerX.addEventListener("click", () => {
  * @description find log x base 10
  */
 logbase10.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
-  input.textContent = Math.log10(inputValue);
+  const inputValue = Number(getInputValue());
+  input.textContent = numberFormat(Math.log10(inputValue));
 });
 
 //  seventh line
@@ -374,8 +382,8 @@ logbase10.addEventListener("click", () => {
  */
 
 naturalLog.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
-  input.textContent = Math.log(inputValue);
+  const inputValue = Number(getInputValue());
+  input.textContent = numberFormat(Math.log(inputValue));
 });
 
 //  trigonometry
@@ -384,8 +392,8 @@ naturalLog.addEventListener("click", () => {
  * @description find sin of given radian
  */
 sin.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.sin(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = numberFormat( Math.sin(inputValue));
 });
 
 /**
@@ -394,8 +402,8 @@ sin.addEventListener("click", () => {
  */
 
 cos.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.cos(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = numberFormat( Math.cos(inputValue));
 });
 
 /**
@@ -404,8 +412,8 @@ cos.addEventListener("click", () => {
  */
 
 tan.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.tan(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = numberFormat( Math.tan(inputValue));
 });
 
 /**
@@ -414,8 +422,8 @@ tan.addEventListener("click", () => {
  */
 
 cosec.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = 1 / Math.sin(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = numberFormat( 1 / Math.sin(inputValue));
 });
 
 /**
@@ -424,8 +432,8 @@ cosec.addEventListener("click", () => {
  */
 
 sec.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = 1 / Math.cos(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = numberFormat( 1 / Math.cos(inputValue));
 });
 
 /**
@@ -434,8 +442,8 @@ sec.addEventListener("click", () => {
  */
 
 cot.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = 1 / Math.tan(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent =numberFormat( 1 / Math.tan(inputValue));
 });
 
 //  fuction
@@ -444,31 +452,31 @@ cot.addEventListener("click", () => {
  * @description find floor  of given number
  */
 floor.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.floor(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent =numberFormat( Math.floor(inputValue));
 });
 /**
  * @event ceil
  * @description find ceil of given number
  */
 ceil.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.ceil(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent =numberFormat( Math.ceil(inputValue));
 });
 /**
  * @event truncate
  * @description truncate the given number
  */
 truncate.addEventListener("click", () => {
-  const inputValue = eval(input.textContent);
-  input.textContent = Math.floor(inputValue);
+  const inputValue = eval(getInputValue());
+  input.textContent = umberFormat(Math.floor(inputValue));
 });
 /**
  * @event manInFunction
  * @description mod the input number
  */
 manInFunction.addEventListener("click", () => {
-  const inputValue = Number(input.textContent);
+  const inputValue = Number(getInputValue());
   if (inputValue < 0) {
     input.textContent = -inputValue;
   }
@@ -483,12 +491,12 @@ degreeRadian.addEventListener("click", () => {
   if (degreeToRadian) {
     //deg to rad
     degreeRadian.textContent = "RAD";
-    input.textContent = (eval(input.textContent) * Math.PI) / 180;
+    input.textContent =numberFormat(( (eval(getInputValue())) * Math.PI) / 180);
     degreeToRadian = !degreeToRadian;
   } else {
     //rad to deg
     degreeRadian.textContent = "DEG";
-    input.textContent = (eval(input.textContent) / Math.PI) * 180;
+    input.textContent =numberFormat( (eval(getInputValue()) / Math.PI) * 180);
     degreeToRadian = !degreeToRadian;
   }
 });
@@ -500,17 +508,17 @@ degreeRadian.addEventListener("click", () => {
  * @description convert exponential number to decimal and vice versa
  */
 ExponentialDecimal.addEventListener("click", () => {
-  if (input.textContent.length === 0) {
+  if (getInputValue().length === 0) {
     return;
   }
-  const answer = eval(input.textContent);
+  const answer = eval(getInputValue());
   if (!input.textContent.includes("e")) {
     input.textContent = answer.toExponential();
 
     return;
   }
   if (input.textContent.includes("e")) {
-    input.textContent = answer.toString();
+    input.textContent =numberFormat( answer.toString());
   }
 });
 
@@ -519,7 +527,7 @@ ExponentialDecimal.addEventListener("click", () => {
  * @description display the number on screen
  */
 function displayNumber(number) {
-  let inputValue = input.textContent;
+  let inputValue = getInputValue();
   //below if take care that user can't press multiple zeros if display is empty
   if (number === 0 && inputValue == 0 && inputValue.length === 1) {
     return;
@@ -531,6 +539,7 @@ function displayNumber(number) {
   }
   //below if used to display number
   if (number !== ".") input.textContent += number;
+  input.textContent=numberFormat(getInputValue())
 }
 
 /**
