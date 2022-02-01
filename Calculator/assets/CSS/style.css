@@ -111,7 +111,6 @@ background-color: white;
   }
   .dropdown:hover .dropdown-content p:hover{
     background-color: #f2f2f2;
-    border: 0.5px solid black;
   }
 .whiten{
     background-color: #fcfcfc !important;
