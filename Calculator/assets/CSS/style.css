@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    box-sizing: border-box;
+}
+html{
+    background-color: #333;
+}
+#calculator{
+    width: 407px;
+    margin: auto;
+    background-color: #f2f2f2;
+    color: black;
+    display: grid;
+    grid-template-rows: 72px;
+    grid-gap: 4px;
+}
+#input{
+    text-align: right;
+    font-size: 36px;
+  overflow-x: scroll;
+}
+#input div{
+    height: 100%;
+    
+}
+#buttons{
+    display: grid;
+    grid-template-columns:repeat(5,75px) ;
+    grid-template-rows:repeat(7,50px) ;
+    grid-gap: 8px;
+}
+#buttons div{
+    background-color: #f7f7f7;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+#buttons div:hover{
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.middle_control,.upper_control{
+    display: flex;
+    
+}
+.upper_control{
+    justify-content: flex-start;
+    
+}
+.upper_control div{
+    padding: 8px 8px;
+    cursor: pointer;
+}
+.middle_control div{
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 8px;
+}
+.middle_control div:hover,.upper_control div:hover{
+background-color: white;
+}
+#mc, #mr{
+    color: gray;
+    cursor: not-allowed;
+}
+.menus{
+    display: flex;
+}
+.menus .dropdown{
+    padding: 16px 8px;
+}
+.function{
+    font-family: Courgette;
+}
+.dropdown{
+    position: relative;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fcfcfc;
+    border: 1px solid #fcfcfc;
+    border-radius: 8px;
+    min-width: 175px;
+  
+    max-width: 170px;
+    z-index: 1;
+  }
+  .dropdown:hover .dropdown-content {
+     display: grid;
+   position: absolute;
+    left: 10%;
+    top: 80%;
+    grid-template-columns: repeat(3,1fr);
+   
+ 
+  }
+  .dropdown:hover .dropdown-content p{
+      padding: 16px 8px;
+      cursor: pointer;
+      margin: 0px 2px;
+  }
+  .dropdown:hover .dropdown-content p:hover{
+    background-color: #f2f2f2;
+  }
+.whiten{
+    background-color: #fcfcfc !important;
+}
+.whiten:hover{
+    background-color: #f2f2f2 !important;
+}
+#equal{
+    background-color: rgb(0, 153, 255) !important;
+    color: #fff;
+}
+#equal:hover{
+    border: none !important;
+    border-radius: 0 !important;
+    background-color: rgb(0, 119, 199) !important;
+}

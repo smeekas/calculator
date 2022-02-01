@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAABmJLR0QA/wD/AP+gvaeTAAADA0lEQVRYhe2YS27iQBCGHVt4AxwAHwFzh5BdkKMIkOUrIBDiIfE4ABFCuQaPW3Q2SQ4QiBKHxwbnBJiF2fDPojcgu03bDKMo42+Fu7pKf3dVIXUJQkTEv0eWZcMwJpOJaZrb7RZns91uTdMcj8eGYciyHEZTsVhcrVbnS2GxXC4LhUIAQaIoPj4+Uue3t7darZZOp+PxeJjDHROPx1VVrdfr0+mUxh8MBqIocjlTTY7jlEolXp+AiKJYLpcdx6HKTjsUi0Wq6fr6+hKCDslms1RZPp/32yfLMq2nUqnkueHu7o4QEqj8bdsmhGia5hmwUqkAWCwWsViMKcswDFpPnrl7eHg4p8Z7vZ47piRJs9kMgK7rTFmTyQRArVbzvCea3FarlUqlmCFcpFKpdrtNk+V5Z41GA8BoNGKG+Pr6ApBOp92mp6cnAK1Wi1/QIZ1OBwAhxG1SVRWAaZpM581mAyCZTLJM9J5eX1/5c/f8/CwIgqIoADabjTtyMpl0m64OPwAIgnB1dbToNtHf/Bx6nQxOucjf0vlEsoIQRtbLywv/ZlryZ0F7J6jpEsF/URI1Tfv+/rYsK5fL8a+Eh/OeLcuin+v1mn/lNyTxCM4D5XI5y7LW6/Xt7S3/Svh+ijrxBFEn/oIkHhF14gnTD01i+E6Ei5/SiW7+p07kfJDRLvO8KlYnBn2QHeHzfCWEAGi326HOK3S7XTCer5lMBv7P1/F4DKBer7tNmqYBcByn0+koisIvSFGUbre72+3AeOw3m00Aw+GQGYKORqbTqedopNfrsSqdB9Zo5P39Hf6jEVmWl8slgHK57LlB0zRCiG3b/Gr8B0nVahXAfD73GyQJglAoFGiystms376/wc3NzW632+/39/f3p3cPBgOqrFKpSJJ0CUGSJFWrVVpw/X6fy0cURaoMwGw2azQaqqomEonz1SQSiUwm02w2aT3t9/t+vx9sPJvP5xeLxTk17s98PufKnZtYLKbr+mg0+vz8DFTmLGzb/vj4GA6Huq6fqPGIiAvxB5THlg76/tsIAAAAAElFTkSuQmCC"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <script src="./assets/JS/app.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/CSS/style.css" />
+  </head>
+  <body>
+    <div id="calculator">
+      <div id="input">
+        <div></div>
+      </div>
+      <div class="upper_control">
+        <div id="deg">DEG</div>
+        <div id="fe">F-E</div>
+      </div>
+      <div class="middle_control">
+        <div id="mc">MC</div>
+        <div id="mr">MR</div>
+        <div id="mp">M+</div>
+        <div id="mn">M-</div>
+        <div id="ms">MS</div>
+      </div>
+      <div class="menus">
+        <div class="dropdown">
+          <span>◢ trigonometry <i class="far fa-angle-down"></i></span>
+          <div class="dropdown-content">
+            <p id="sin">sin</p>
+            <p id="cos">cos</p>
+            <p id="tan">tan</p>
+            <p id="cosec">cosec</p>
+            <p id="sec">sec</p>
+            <p id="cot">cot</p>
+            <!-- <p id="cot">cot</p> -->
+          </div>
+        </div>
+        <div class="dropdown">
+          <span>
+            <i class="function">f</i> function <i class="far fa-angle-down"></i
+          ></span>
+          <div class="dropdown-content">
+            <p id="floor">floor</p>
+            <p id="ceil">ceil</p>
+            <p id="manInFunction">|x|</p>
+            <p id="trunc">trunc</p>
+          </div>
+        </div>
+      </div>
+      <div id="buttons">
+        <div id="twond">
+          <span>2<sup>nd</sup></span>
+        </div>
+        <div id="pi">&pi;</div>
+        <div id="natural">e</div>
+        <div id="clear">C</div>
+        <div id="back"><i class="fas fa-backspace"></i></div>
+        <div id="sqr">
+          <span>x<sup>2</sup></span>
+        </div>
+        <div id="inv">1/x</div>
+        <div id="man">|x|</div>
+        <div id="exp">exp</div>
+        <div id="mod">mod</div>
+        <div id="root">&#8730;x</div>
+        <div id="lpara">(</div>
+        <div id="rpara">)</div>
+        <div id="fact">n!</div>
+        <div id="div">&#247;</div>
+        <div id="xy">
+          <span>x<sup>y</sup></span>
+        </div>
+        <div class="whiten" id="seven">7</div>
+        <div class="whiten" id="eight">8</div>
+        <div class="whiten" id="nine">9</div>
+        <div id="mul">&#215;</div>
+        <div id="x10">
+          <span>10<sup>x</sup></span>
+        </div>
+        <div class="whiten" id="four">4</div>
+        <div class="whiten" id="five">5</div>
+        <div class="whiten" id="six">6</div>
+        <div id="minus">&#8722;</div>
+        <div id="log">log</div>
+        <div class="whiten" id="one">1</div>
+        <div class="whiten" id="two">2</div>
+        <div class="whiten" id="three">3</div>
+        <div id="plus">+</div>
+        <div id="ln">ln</div>
+        <div class="whiten" id="plusminus">&#177;</div>
+        <div class="whiten" id="zero">0</div>
+        <div class="whiten" id="decimal">.</div>
+        <div id="equal">=</div>
+      </div>
+    </div>
+  </body>
+</html>
